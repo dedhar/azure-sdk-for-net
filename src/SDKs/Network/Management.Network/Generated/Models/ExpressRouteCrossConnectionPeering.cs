@@ -13,26 +13,26 @@ namespace Microsoft.Azure.Management.Network.Models
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
-    /// Peering in an ExpressRouteCircuit resource.
+    /// Peering in an ExpressRoute Cross Connection resource.
     /// </summary>
     [Rest.Serialization.JsonTransformation]
-    public partial class ExpressRouteCircuitPeering : SubResource
+    public partial class ExpressRouteCrossConnectionPeering : SubResource
     {
         /// <summary>
-        /// Initializes a new instance of the ExpressRouteCircuitPeering class.
+        /// Initializes a new instance of the
+        /// ExpressRouteCrossConnectionPeering class.
         /// </summary>
-        public ExpressRouteCircuitPeering()
+        public ExpressRouteCrossConnectionPeering()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ExpressRouteCircuitPeering class.
+        /// Initializes a new instance of the
+        /// ExpressRouteCrossConnectionPeering class.
         /// </summary>
         /// <param name="id">Resource ID.</param>
         /// <param name="peeringType">The peering type. Possible values
@@ -52,25 +52,20 @@ namespace Microsoft.Azure.Management.Network.Models
         /// <param name="vlanId">The VLAN ID.</param>
         /// <param name="microsoftPeeringConfig">The Microsoft peering
         /// configuration.</param>
-        /// <param name="stats">Gets peering stats.</param>
         /// <param name="provisioningState">Gets the provisioning state of the
         /// public IP resource. Possible values are: 'Updating', 'Deleting',
         /// and 'Failed'.</param>
         /// <param name="gatewayManagerEtag">The GatewayManager Etag.</param>
         /// <param name="lastModifiedBy">Gets whether the provider or the
         /// customer last modified the peering.</param>
-        /// <param name="routeFilter">The reference of the RouteFilter
-        /// resource.</param>
         /// <param name="ipv6PeeringConfig">The IPv6 peering
         /// configuration.</param>
-        /// <param name="connections">The list of circuit connections
-        /// associated with Azure Private Peering for this circuit.</param>
         /// <param name="name">Gets name of the resource that is unique within
         /// a resource group. This name can be used to access the
         /// resource.</param>
         /// <param name="etag">A unique read-only string that changes whenever
         /// the resource is updated.</param>
-        public ExpressRouteCircuitPeering(string id = default(string), string peeringType = default(string), string state = default(string), int? azureASN = default(int?), long? peerASN = default(long?), string primaryPeerAddressPrefix = default(string), string secondaryPeerAddressPrefix = default(string), string primaryAzurePort = default(string), string secondaryAzurePort = default(string), string sharedKey = default(string), int? vlanId = default(int?), ExpressRouteCircuitPeeringConfig microsoftPeeringConfig = default(ExpressRouteCircuitPeeringConfig), ExpressRouteCircuitStats stats = default(ExpressRouteCircuitStats), string provisioningState = default(string), string gatewayManagerEtag = default(string), string lastModifiedBy = default(string), RouteFilter routeFilter = default(RouteFilter), Ipv6ExpressRouteCircuitPeeringConfig ipv6PeeringConfig = default(Ipv6ExpressRouteCircuitPeeringConfig), IList<ExpressRouteCircuitConnection> connections = default(IList<ExpressRouteCircuitConnection>), string name = default(string), string etag = default(string))
+        public ExpressRouteCrossConnectionPeering(string id = default(string), string peeringType = default(string), string state = default(string), int? azureASN = default(int?), long? peerASN = default(long?), string primaryPeerAddressPrefix = default(string), string secondaryPeerAddressPrefix = default(string), string primaryAzurePort = default(string), string secondaryAzurePort = default(string), string sharedKey = default(string), int? vlanId = default(int?), ExpressRouteCircuitPeeringConfig microsoftPeeringConfig = default(ExpressRouteCircuitPeeringConfig), string provisioningState = default(string), string gatewayManagerEtag = default(string), string lastModifiedBy = default(string), Ipv6ExpressRouteCircuitPeeringConfig ipv6PeeringConfig = default(Ipv6ExpressRouteCircuitPeeringConfig), string name = default(string), string etag = default(string))
             : base(id)
         {
             PeeringType = peeringType;
@@ -84,13 +79,10 @@ namespace Microsoft.Azure.Management.Network.Models
             SharedKey = sharedKey;
             VlanId = vlanId;
             MicrosoftPeeringConfig = microsoftPeeringConfig;
-            Stats = stats;
             ProvisioningState = provisioningState;
             GatewayManagerEtag = gatewayManagerEtag;
             LastModifiedBy = lastModifiedBy;
-            RouteFilter = routeFilter;
             Ipv6PeeringConfig = ipv6PeeringConfig;
-            Connections = connections;
             Name = name;
             Etag = etag;
             CustomInit();
@@ -116,10 +108,10 @@ namespace Microsoft.Azure.Management.Network.Models
         public string State { get; set; }
 
         /// <summary>
-        /// Gets or sets the Azure ASN.
+        /// Gets the Azure ASN.
         /// </summary>
         [JsonProperty(PropertyName = "properties.azureASN")]
-        public int? AzureASN { get; set; }
+        public int? AzureASN { get; private set; }
 
         /// <summary>
         /// Gets or sets the peer ASN.
@@ -140,16 +132,16 @@ namespace Microsoft.Azure.Management.Network.Models
         public string SecondaryPeerAddressPrefix { get; set; }
 
         /// <summary>
-        /// Gets or sets the primary port.
+        /// Gets the primary port.
         /// </summary>
         [JsonProperty(PropertyName = "properties.primaryAzurePort")]
-        public string PrimaryAzurePort { get; set; }
+        public string PrimaryAzurePort { get; private set; }
 
         /// <summary>
-        /// Gets or sets the secondary port.
+        /// Gets the secondary port.
         /// </summary>
         [JsonProperty(PropertyName = "properties.secondaryAzurePort")]
-        public string SecondaryAzurePort { get; set; }
+        public string SecondaryAzurePort { get; private set; }
 
         /// <summary>
         /// Gets or sets the shared key.
@@ -170,23 +162,17 @@ namespace Microsoft.Azure.Management.Network.Models
         public ExpressRouteCircuitPeeringConfig MicrosoftPeeringConfig { get; set; }
 
         /// <summary>
-        /// Gets peering stats.
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.stats")]
-        public ExpressRouteCircuitStats Stats { get; set; }
-
-        /// <summary>
         /// Gets the provisioning state of the public IP resource. Possible
         /// values are: 'Updating', 'Deleting', and 'Failed'.
         /// </summary>
         [JsonProperty(PropertyName = "properties.provisioningState")]
-        public string ProvisioningState { get; set; }
+        public string ProvisioningState { get; private set; }
 
         /// <summary>
-        /// Gets or sets the GatewayManager Etag.
+        /// Gets the GatewayManager Etag.
         /// </summary>
         [JsonProperty(PropertyName = "properties.gatewayManagerEtag")]
-        public string GatewayManagerEtag { get; set; }
+        public string GatewayManagerEtag { get; private set; }
 
         /// <summary>
         /// Gets whether the provider or the customer last modified the
@@ -196,23 +182,10 @@ namespace Microsoft.Azure.Management.Network.Models
         public string LastModifiedBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the reference of the RouteFilter resource.
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.routeFilter")]
-        public RouteFilter RouteFilter { get; set; }
-
-        /// <summary>
         /// Gets or sets the IPv6 peering configuration.
         /// </summary>
         [JsonProperty(PropertyName = "properties.ipv6PeeringConfig")]
         public Ipv6ExpressRouteCircuitPeeringConfig Ipv6PeeringConfig { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list of circuit connections associated with Azure
-        /// Private Peering for this circuit.
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.connections")]
-        public IList<ExpressRouteCircuitConnection> Connections { get; set; }
 
         /// <summary>
         /// Gets name of the resource that is unique within a resource group.

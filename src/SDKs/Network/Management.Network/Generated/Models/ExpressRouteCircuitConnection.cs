@@ -57,7 +57,7 @@ namespace Microsoft.Azure.Management.Network.Models
         /// resource.</param>
         /// <param name="etag">A unique read-only string that changes whenever
         /// the resource is updated.</param>
-        public ExpressRouteCircuitConnection(string id = default(string), ExpressRouteCircuitPeering expressRouteCircuitPeering = default(ExpressRouteCircuitPeering), ExpressRouteCircuitPeering peerExpressRouteCircuitPeering = default(ExpressRouteCircuitPeering), string addressPrefix = default(string), string authorizationKey = default(string), string circuitConnectionStatus = default(string), string provisioningState = default(string), string name = default(string), string etag = default(string))
+        public ExpressRouteCircuitConnection(string id = default(string), SubResource expressRouteCircuitPeering = default(SubResource), SubResource peerExpressRouteCircuitPeering = default(SubResource), string addressPrefix = default(string), string authorizationKey = default(string), string circuitConnectionStatus = default(string), string provisioningState = default(string), string name = default(string), string etag = default(string))
             : base(id)
         {
             ExpressRouteCircuitPeering = expressRouteCircuitPeering;
@@ -81,14 +81,14 @@ namespace Microsoft.Azure.Management.Network.Models
         /// Resource of the circuit initiating connection.
         /// </summary>
         [JsonProperty(PropertyName = "properties.expressRouteCircuitPeering")]
-        public ExpressRouteCircuitPeering ExpressRouteCircuitPeering { get; set; }
+        public SubResource ExpressRouteCircuitPeering { get; set; }
 
         /// <summary>
         /// Gets or sets reference to Express Route Circuit Private Peering
         /// Resource of the peered circuit.
         /// </summary>
         [JsonProperty(PropertyName = "properties.peerExpressRouteCircuitPeering")]
-        public ExpressRouteCircuitPeering PeerExpressRouteCircuitPeering { get; set; }
+        public SubResource PeerExpressRouteCircuitPeering { get; set; }
 
         /// <summary>
         /// Gets or sets /29 IP address space to carve out Customer addresses
@@ -133,22 +133,5 @@ namespace Microsoft.Azure.Management.Network.Models
         [JsonProperty(PropertyName = "etag")]
         public string Etag { get; private set; }
 
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public virtual void Validate()
-        {
-            if (ExpressRouteCircuitPeering != null)
-            {
-                ExpressRouteCircuitPeering.Validate();
-            }
-            if (PeerExpressRouteCircuitPeering != null)
-            {
-                PeerExpressRouteCircuitPeering.Validate();
-            }
-        }
     }
 }

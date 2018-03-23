@@ -128,29 +128,9 @@ namespace Microsoft.Azure.Management.Network
         public virtual IExpressRouteCrossConnectionsOperations ExpressRouteCrossConnections { get; private set; }
 
         /// <summary>
-        /// Gets the IExpressRouteCrossConnectionsTagsOperations.
-        /// </summary>
-        public virtual IExpressRouteCrossConnectionsTagsOperations ExpressRouteCrossConnectionsTags { get; private set; }
-
-        /// <summary>
         /// Gets the IExpressRouteCrossConnectionPeeringsOperations.
         /// </summary>
         public virtual IExpressRouteCrossConnectionPeeringsOperations ExpressRouteCrossConnectionPeerings { get; private set; }
-
-        /// <summary>
-        /// Gets the IExpressRouteCircuitsArpTableOperations.
-        /// </summary>
-        public virtual IExpressRouteCircuitsArpTableOperations ExpressRouteCircuitsArpTable { get; private set; }
-
-        /// <summary>
-        /// Gets the IExpressRouteCircuitsRouteTableSummaryOperations.
-        /// </summary>
-        public virtual IExpressRouteCircuitsRouteTableSummaryOperations ExpressRouteCircuitsRouteTableSummary { get; private set; }
-
-        /// <summary>
-        /// Gets the IExpressRouteCircuitsRoutesTableOperations.
-        /// </summary>
-        public virtual IExpressRouteCircuitsRoutesTableOperations ExpressRouteCircuitsRoutesTable { get; private set; }
 
         /// <summary>
         /// Gets the ILoadBalancersOperations.
@@ -513,11 +493,7 @@ namespace Microsoft.Azure.Management.Network
             ExpressRouteCircuits = new ExpressRouteCircuitsOperations(this);
             ExpressRouteServiceProviders = new ExpressRouteServiceProvidersOperations(this);
             ExpressRouteCrossConnections = new ExpressRouteCrossConnectionsOperations(this);
-            ExpressRouteCrossConnectionsTags = new ExpressRouteCrossConnectionsTagsOperations(this);
             ExpressRouteCrossConnectionPeerings = new ExpressRouteCrossConnectionPeeringsOperations(this);
-            ExpressRouteCircuitsArpTable = new ExpressRouteCircuitsArpTableOperations(this);
-            ExpressRouteCircuitsRouteTableSummary = new ExpressRouteCircuitsRouteTableSummaryOperations(this);
-            ExpressRouteCircuitsRoutesTable = new ExpressRouteCircuitsRoutesTableOperations(this);
             LoadBalancers = new LoadBalancersOperations(this);
             LoadBalancerBackendAddressPools = new LoadBalancerBackendAddressPoolsOperations(this);
             LoadBalancerFrontendIPConfigurations = new LoadBalancerFrontendIPConfigurationsOperations(this);

@@ -90,10 +90,10 @@ namespace Microsoft.Azure.Management.Network
             /// The operations group for this extension method.
             /// </param>
             /// <param name='resourceGroupName'>
-            /// The name of the resource group.
+            /// The name of the resource group (peering location of the circuit).
             /// </param>
             /// <param name='crossConnectionName'>
-            /// The name of the ExpressRouteCrossConnection.
+            /// The name of the ExpressRouteCrossConnection (service key of the circuit).
             /// </param>
             public static ExpressRouteCrossConnection Get(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName)
             {
@@ -107,10 +107,10 @@ namespace Microsoft.Azure.Management.Network
             /// The operations group for this extension method.
             /// </param>
             /// <param name='resourceGroupName'>
-            /// The name of the resource group.
+            /// The name of the resource group (peering location of the circuit).
             /// </param>
             /// <param name='crossConnectionName'>
-            /// The name of the ExpressRouteCrossConnection.
+            /// The name of the ExpressRouteCrossConnection (service key of the circuit).
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
@@ -170,6 +170,214 @@ namespace Microsoft.Azure.Management.Network
             }
 
             /// <summary>
+            /// Updates an express route cross connection tags.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the cross connection.
+            /// </param>
+            /// <param name='crossConnectionParameters'>
+            /// Parameters supplied to update express route cross connection tags.
+            /// </param>
+            public static ExpressRouteCrossConnection UpdateTags(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, TagsObject crossConnectionParameters)
+            {
+                return operations.UpdateTagsAsync(resourceGroupName, crossConnectionName, crossConnectionParameters).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates an express route cross connection tags.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the cross connection.
+            /// </param>
+            /// <param name='crossConnectionParameters'>
+            /// Parameters supplied to update express route cross connection tags.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCrossConnection> UpdateTagsAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, TagsObject crossConnectionParameters, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.UpdateTagsWithHttpMessagesAsync(resourceGroupName, crossConnectionName, crossConnectionParameters, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the currently advertised ARP table associated with the express route
+            /// cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device
+            /// </param>
+            public static ExpressRouteCircuitsArpTableListResult ListArpTable(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath)
+            {
+                return operations.ListArpTableAsync(resourceGroupName, crossConnectionName, peeringName, devicePath).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the currently advertised ARP table associated with the express route
+            /// cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCircuitsArpTableListResult> ListArpTableAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ListArpTableWithHttpMessagesAsync(resourceGroupName, crossConnectionName, peeringName, devicePath, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the route table summary associated with the express route cross
+            /// connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            public static ExpressRouteCrossConnectionsRoutesTableSummaryListResult ListRoutesTableSummary(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath)
+            {
+                return operations.ListRoutesTableSummaryAsync(resourceGroupName, crossConnectionName, peeringName, devicePath).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the route table summary associated with the express route cross
+            /// connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCrossConnectionsRoutesTableSummaryListResult> ListRoutesTableSummaryAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ListRoutesTableSummaryWithHttpMessagesAsync(resourceGroupName, crossConnectionName, peeringName, devicePath, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the currently advertised routes table associated with the express
+            /// route cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            public static ExpressRouteCircuitsRoutesTableListResult ListRoutesTable(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath)
+            {
+                return operations.ListRoutesTableAsync(resourceGroupName, crossConnectionName, peeringName, devicePath).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the currently advertised routes table associated with the express
+            /// route cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCircuitsRoutesTableListResult> ListRoutesTableAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ListRoutesTableWithHttpMessagesAsync(resourceGroupName, crossConnectionName, peeringName, devicePath, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Update the specified ExpressRouteCrossConnection.
             /// </summary>
             /// <param name='operations'>
@@ -210,6 +418,214 @@ namespace Microsoft.Azure.Management.Network
             public static async Task<ExpressRouteCrossConnection> BeginCreateOrUpdateAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, ExpressRouteCrossConnection parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.BeginCreateOrUpdateWithHttpMessagesAsync(resourceGroupName, crossConnectionName, parameters, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Updates an express route cross connection tags.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the cross connection.
+            /// </param>
+            /// <param name='crossConnectionParameters'>
+            /// Parameters supplied to update express route cross connection tags.
+            /// </param>
+            public static ExpressRouteCrossConnection BeginUpdateTags(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, TagsObject crossConnectionParameters)
+            {
+                return operations.BeginUpdateTagsAsync(resourceGroupName, crossConnectionName, crossConnectionParameters).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates an express route cross connection tags.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the cross connection.
+            /// </param>
+            /// <param name='crossConnectionParameters'>
+            /// Parameters supplied to update express route cross connection tags.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCrossConnection> BeginUpdateTagsAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, TagsObject crossConnectionParameters, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.BeginUpdateTagsWithHttpMessagesAsync(resourceGroupName, crossConnectionName, crossConnectionParameters, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the currently advertised ARP table associated with the express route
+            /// cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device
+            /// </param>
+            public static ExpressRouteCircuitsArpTableListResult BeginListArpTable(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath)
+            {
+                return operations.BeginListArpTableAsync(resourceGroupName, crossConnectionName, peeringName, devicePath).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the currently advertised ARP table associated with the express route
+            /// cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCircuitsArpTableListResult> BeginListArpTableAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.BeginListArpTableWithHttpMessagesAsync(resourceGroupName, crossConnectionName, peeringName, devicePath, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the route table summary associated with the express route cross
+            /// connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            public static ExpressRouteCrossConnectionsRoutesTableSummaryListResult BeginListRoutesTableSummary(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath)
+            {
+                return operations.BeginListRoutesTableSummaryAsync(resourceGroupName, crossConnectionName, peeringName, devicePath).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the route table summary associated with the express route cross
+            /// connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCrossConnectionsRoutesTableSummaryListResult> BeginListRoutesTableSummaryAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.BeginListRoutesTableSummaryWithHttpMessagesAsync(resourceGroupName, crossConnectionName, peeringName, devicePath, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the currently advertised routes table associated with the express
+            /// route cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            public static ExpressRouteCircuitsRoutesTableListResult BeginListRoutesTable(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath)
+            {
+                return operations.BeginListRoutesTableAsync(resourceGroupName, crossConnectionName, peeringName, devicePath).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the currently advertised routes table associated with the express
+            /// route cross connection in a resource group.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the resource group.
+            /// </param>
+            /// <param name='crossConnectionName'>
+            /// The name of the ExpressRouteCrossConnection.
+            /// </param>
+            /// <param name='peeringName'>
+            /// The name of the peering.
+            /// </param>
+            /// <param name='devicePath'>
+            /// The path of the device.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ExpressRouteCircuitsRoutesTableListResult> BeginListRoutesTableAsync(this IExpressRouteCrossConnectionsOperations operations, string resourceGroupName, string crossConnectionName, string peeringName, string devicePath, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.BeginListRoutesTableWithHttpMessagesAsync(resourceGroupName, crossConnectionName, peeringName, devicePath, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

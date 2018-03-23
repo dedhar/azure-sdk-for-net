@@ -46,8 +46,10 @@ namespace Microsoft.Azure.Management.Network.Models
         /// <param name="secondaryAzurePort">The name of the secondary
         /// port.</param>
         /// <param name="sTag">The identifier of the circuit traffic.</param>
-        /// <param name="serviceProviderProperties">The
-        /// ServiceProviderProperties.</param>
+        /// <param name="peeringLocation">The peering location of the
+        /// ExpressRoute circuit.</param>
+        /// <param name="bandwidthInMbps">The circuit bandwidth In
+        /// Mbps.</param>
         /// <param name="expressRouteCircuit">The ExpressRouteCircuit</param>
         /// <param name="serviceProviderProvisioningState">The provisioning
         /// state of the circuit in the connectivity provider system. Possible
@@ -62,13 +64,14 @@ namespace Microsoft.Azure.Management.Network.Models
         /// <param name="peerings">The list of peerings.</param>
         /// <param name="etag">Gets a unique read-only string that changes
         /// whenever the resource is updated.</param>
-        public ExpressRouteCrossConnection(string id = default(string), string name = default(string), string type = default(string), string location = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), string primaryAzurePort = default(string), string secondaryAzurePort = default(string), int? sTag = default(int?), ExpressRouteCrossConnectionServiceProviderProperties serviceProviderProperties = default(ExpressRouteCrossConnectionServiceProviderProperties), ExpressRouteCircuitReference expressRouteCircuit = default(ExpressRouteCircuitReference), string serviceProviderProvisioningState = default(string), string serviceProviderNotes = default(string), string provisioningState = default(string), IList<ExpressRouteCircuitPeering> peerings = default(IList<ExpressRouteCircuitPeering>), string etag = default(string))
+        public ExpressRouteCrossConnection(string id = default(string), string name = default(string), string type = default(string), string location = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), string primaryAzurePort = default(string), string secondaryAzurePort = default(string), int? sTag = default(int?), string peeringLocation = default(string), int? bandwidthInMbps = default(int?), ExpressRouteCircuitReference expressRouteCircuit = default(ExpressRouteCircuitReference), string serviceProviderProvisioningState = default(string), string serviceProviderNotes = default(string), string provisioningState = default(string), IList<ExpressRouteCrossConnectionPeering> peerings = default(IList<ExpressRouteCrossConnectionPeering>), string etag = default(string))
             : base(id, name, type, location, tags)
         {
             PrimaryAzurePort = primaryAzurePort;
             SecondaryAzurePort = secondaryAzurePort;
             STag = sTag;
-            ServiceProviderProperties = serviceProviderProperties;
+            PeeringLocation = peeringLocation;
+            BandwidthInMbps = bandwidthInMbps;
             ExpressRouteCircuit = expressRouteCircuit;
             ServiceProviderProvisioningState = serviceProviderProvisioningState;
             ServiceProviderNotes = serviceProviderNotes;
@@ -102,16 +105,22 @@ namespace Microsoft.Azure.Management.Network.Models
         public int? STag { get; private set; }
 
         /// <summary>
-        /// Gets or sets the ServiceProviderProperties.
+        /// Gets the peering location of the ExpressRoute circuit.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.serviceProviderProperties")]
-        public ExpressRouteCrossConnectionServiceProviderProperties ServiceProviderProperties { get; set; }
+        [JsonProperty(PropertyName = "properties.peeringLocation")]
+        public string PeeringLocation { get; private set; }
 
         /// <summary>
-        /// Gets or sets the ExpressRouteCircuit
+        /// Gets the circuit bandwidth In Mbps.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.bandwidthInMbps")]
+        public int? BandwidthInMbps { get; private set; }
+
+        /// <summary>
+        /// Gets the ExpressRouteCircuit
         /// </summary>
         [JsonProperty(PropertyName = "properties.expressRouteCircuit")]
-        public ExpressRouteCircuitReference ExpressRouteCircuit { get; set; }
+        public ExpressRouteCircuitReference ExpressRouteCircuit { get; private set; }
 
         /// <summary>
         /// Gets or sets the provisioning state of the circuit in the
@@ -140,7 +149,7 @@ namespace Microsoft.Azure.Management.Network.Models
         /// Gets or sets the list of peerings.
         /// </summary>
         [JsonProperty(PropertyName = "properties.peerings")]
-        public IList<ExpressRouteCircuitPeering> Peerings { get; set; }
+        public IList<ExpressRouteCrossConnectionPeering> Peerings { get; set; }
 
         /// <summary>
         /// Gets a unique read-only string that changes whenever the resource

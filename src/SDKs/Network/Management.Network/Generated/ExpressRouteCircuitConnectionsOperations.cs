@@ -584,10 +584,6 @@ namespace Microsoft.Azure.Management.Network
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "expressRouteCircuitConnectionParameters");
             }
-            if (expressRouteCircuitConnectionParameters != null)
-            {
-                expressRouteCircuitConnectionParameters.Validate();
-            }
             if (Client.ApiVersion == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.ApiVersion");
